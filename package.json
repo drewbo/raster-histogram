@@ -1,0 +1,27 @@
+{
+  "name": "raster-histogram",
+  "version": "0.0.1",
+  "description": "Creates a histogram of the color profile of a set of leaflet tiles",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/drewbo/raster-histogram.git"
+  },
+  "author": "drewbo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/drewbo/raster-histogram/issues"
+  },
+  "homepage": "https://github.com/drewbo/raster-histogram",
+  "dependencies": {
+    "browserify": "^9.0.8",
+    "tile-cover": "^2.4.1",
+    "turf-bbox-polygon": "^1.0.1"
+  },
+  "devDependencies": {
+    "beefy": "^2.1.5"
+  }
+}
