@@ -75,15 +75,25 @@ var limits = {
   max_zoom: 9,
   min_zoom: 6
 };
-var tileDisplay = L.layerGroup().addTo(map);
 
+// add first tile grid
+var geo = bbox(map.getBounds().toBBoxString().split(',')).geometry;
+var tileGeo = cover.geojson(geo, limits);
+var tileDisplay = L.layerGroup();
+
+L.geoJson(tileGeo, {
+  weight: 2,
+  fillOpacity: 0
+}).addTo(tileDisplay);
+
+// update histogram on map move end
 map.on('moveend', function(e){
   tileDisplay.clearLayers()
   tempData = [];
 
-  var geo = bbox(map.getBounds().toBBoxString().split(',')).geometry;
+  geo = bbox(map.getBounds().toBBoxString().split(',')).geometry;
   var tiles = cover.tiles(geo, limits);
-  var tileGeo = cover.geojson(geo, limits);
+  tileGeo = cover.geojson(geo, limits);
 
   L.geoJson(tileGeo, {
     weight: 2,
@@ -129,4 +139,15 @@ map.on('moveend', function(e){
       }
     }
   });
+});
+
+d3.select('#grid-toggle').on('click', function () {
+  var active = d3.select(this).classed('active');
+  if (active) {
+    d3.select(this).classed('active', false);
+    map.removeLayer(tileDisplay);
+  } else {
+    d3.select(this).classed('active', true);
+    tileDisplay.addTo(map);
+  }
 });
