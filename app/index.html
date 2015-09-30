@@ -5,18 +5,20 @@
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <title>Project Starter</title>
+    <title>Raster Histogram</title>
 
     <!-- build:css assets/styles/vendor.css -->
-    <!-- endbuild -->
 
+    <!-- endbuild -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
     <!-- build:css assets/styles/main.css -->
     <link rel="stylesheet" href="assets/styles/main.css">
     <!-- endbuild -->
     <link rel="author" type="text/plain" href="humans.txt" />
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-    
+
   </head>
   <body>
     <!--[if lt IE 10]>
@@ -28,22 +30,11 @@
 
     <div id="site-canvas">
       <!-- Content goes inside #site-canvas -->
-      <div class="header">
-        <p>In the beginning the Universe was created.<p>
-        <p>This has made a lot of people very angry and been widely regarded as a bad move.</p>
-      </div>
+      <div id="map"></div>
+      <div id="img"></div>
+      <div id="hist"></div>
       <!-- Content goes inside #site-canvas -->
     </div>
-
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-    <script>
-      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-      e.src='//www.google-analytics.com/analytics.js';
-      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-      ga('create','UA-XXXXX-X');ga('send','pageview');
-    </script>
 
     <!-- build:js assets/scripts/vendor.js -->
     <script src="assets/scripts/vendor.js"></script>

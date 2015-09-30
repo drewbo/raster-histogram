@@ -67,5 +67,10 @@
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.2.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "lodash.flatten": "^3.0.2",
+    "tile-cover": "^3.0.1",
+    "tilebelt": "^1.0.1",
+    "turf-bbox-polygon": "^1.0.1"
+  }
 }
