@@ -1,5 +1,5 @@
 # raster-histogram
 
-Creates a histogram of the color profile of a set of leaflet tiles
+Creates a light intensity histogram from the set of tiles which cover the current view
 
 ![](https://raw.githubusercontent.com/drewbo/raster-histogram/master/raster-histogram.gif)

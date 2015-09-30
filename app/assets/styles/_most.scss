@@ -28,3 +28,15 @@ canvas {
   fill-opacity: .4;
   stroke-width: 2;
 }
+#grid-toggle {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  padding: 10px;
+  color: white;
+  background-color: royalblue;
+  cursor: pointer;
+  &:hover {
+    background-color: mix(royalblue, white, 80%)
+  }
+}
