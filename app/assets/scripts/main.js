@@ -45,7 +45,6 @@ function histogram(imgData) {
 
     var max = Math.max(d3.max(d[0]), d3.max(d[1]), d3.max(d[2]));
     yH.domain([0, max]);
-    //yH.domain([0, 1000])
     return d;
   }
 
@@ -61,6 +60,17 @@ svg = d3.select('#hist')
       .attr('height', height)
     .append('g')
 
+// initial histogram draw (empty data)
+data = [empty.slice(0), empty.slice(0), empty.slice(0)];
+
+var histo = svg.selectAll('.histo')
+	.data(data).enter()
+	.append('path')
+	.attr('class', 'histo')
+	.attr('fill', function(d, i) { return rgb(i); })
+	.attr('stroke', function(d, i) { return rgb(i); })
+	.attr('d', area)
+
 var limits = {
   max_zoom: 9,
   min_zoom: 6
@@ -68,9 +78,8 @@ var limits = {
 var tileDisplay = L.layerGroup().addTo(map);
 
 map.on('moveend', function(e){
-  d3.selectAll('canvas').remove();
-  svg.selectAll('.histo').remove();
   tileDisplay.clearLayers()
+  tempData = [];
 
   var geo = bbox(map.getBounds().toBBoxString().split(',')).geometry;
   var tiles = cover.tiles(geo, limits);
@@ -97,7 +106,7 @@ map.on('moveend', function(e){
     image.src = urlPartOne + loc.join('/') + urlPartTwo;
 
     // adjust dimensions according to relative zoom
-    var dim =  256 / (tile[2] - mapZoom + 1);
+    var dim =  256 / Math.pow(2, tile[2] - mapZoom);
 
     image.width = image.height = dim;
 
@@ -113,20 +122,10 @@ map.on('moveend', function(e){
       var imageData = context.getImageData(0, 0, dim, dim);
       var p = imageData.data;
       tempData.push(Array.from(p));
+
       if (counter === toLoad) {
-
-        console.log(flatten(tempData));
         data = histogram(flatten(tempData))
-
-				var histo = svg.selectAll('.histo')
-					.data(data).enter()
-					.append('path')
-					.attr('class', 'histo')
-					.attr('fill', function(d, i) { return rgb(i); })
-					.attr('stroke', function(d, i) { return rgb(i); })
-					.attr('d', area)
-        //histo.data(data).attr('d', area);
-
+        histo.data(data).transition().duration(750).attr('d', area);
       }
     }
   });
