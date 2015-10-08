@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Canvas Demo</title>
+  </head>
+  <body style="background-color: black">
+    <pre style="font-size:40px; color: white;">
+var image = new Image()
+image.crossOrigin = 'anonymous'
+image.src = // give your desired source
+image.onload = function() {
+  // don't even add anything to the DOM!
+  var canvas = document.createElement('canvas')
+  var context = canvas.getContext('2d')
+  context.drawImage(image, 0, 0)
+  var d = context.getImageData(0, 0, dim, dim).data
+}
+    </pre>
+  </body>
+</html>
